@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/RandomQuoteProvider.dart';
 
 class FeatureTile extends StatelessWidget {
   String featureName;
-
-  FeatureTile(this.featureName);
+  int index;
+  FeatureTile(this.featureName,this.index);
 
   @override
   Widget build(BuildContext context) {
+    final randomQuoteListViewModal =
+    Provider.of<RandomQuoteProvider>(context, listen: true);
     return InkWell(
-      onTap:()=> Navigator.pop(context),
+      onTap:(){
+        Navigator.pop(context);
+        if(index==0){randomQuoteListViewModal.getQuote();}
+        },
       child: Container(
         margin: const EdgeInsets.all(20.0),
         alignment: Alignment.center,

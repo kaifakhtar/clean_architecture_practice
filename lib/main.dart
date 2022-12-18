@@ -15,8 +15,7 @@ void main() {
   runApp(
        MultiProvider(
          providers: [
-           ChangeNotifierProvider<RandomQuoteProvider>(create: (_) => RandomQuoteProvider(getRandomQuote: GetRandomQuote(RandomQuoteRepositoryImpl(quoteRemoteDataSourceInterface: QuoteRemoteDataSourceImp(client: http.Client()), networkInfo: NetworkInfoImpl())))),
-  
+           ChangeNotifierProvider<RandomQuoteProvider>(create: (_) => RandomQuoteProvider( GetRandomQuote(RandomQuoteRepositoryImpl(quoteRemoteDataSourceInterface: QuoteRemoteDataSourceImp(client: http.Client()), networkInfo: NetworkInfoImpl())))),
          ],
          child: MaterialApp(
             home: Home()),

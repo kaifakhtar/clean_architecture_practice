@@ -6,12 +6,12 @@ import 'package:dartz/dartz.dart';
 import '../repositories/randomQuoteRepository.dart';
 
 class GetRandomQuote {
-   RandomQuoteRepository randomQuoteRepository;
+   RandomQuoteRepository _randomQuoteRepository;
 
-   GetRandomQuote(this.randomQuoteRepository);
+   GetRandomQuote(this._randomQuoteRepository);
 
    Future<Either<Failure,QuoteEntity>> call()async{
-    return await randomQuoteRepository.getRandomQuote();
+    return await _randomQuoteRepository.getRandomQuote();
    }
 
 }

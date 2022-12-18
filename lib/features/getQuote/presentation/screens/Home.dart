@@ -12,34 +12,35 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
-   List<String> listFeatureName=["Quotes","Facts","Health"];
-       // final randomQuoteListViewModal =
-       // Provider.of<RandomQuoteProvider>(context, listen: true);
+    List<String> listFeatureName = ["Quotes", "Facts", "Health"];
+    final randomQuoteListViewModal =
+    Provider.of<RandomQuoteProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        title:Text("KnowledgeBase"),
+        title: Text("KnowledgeBase"),
       ),
-     floatingActionButton: FloatingActionButton.extended(onPressed: () {
 
-        showModalBottomSheet(context: context, builder: (context){
-          return SizedBox(
-            height: 300,
-            child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context,index){
-              return FeatureTile(listFeatureName[index]);
-            }),
-          );
-        });
 
-      }, label: Text("Explore Features")),
+      body: randomQuoteListViewModal.quote?.content==null?CircularProgressIndicator():Text(randomQuoteListViewModal.quote!.content!),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return SizedBox(
+                    height: 300,
+                    child: ListView.builder(
+                        itemCount: 3,
+                        itemBuilder: (context, index) {
+                          return FeatureTile(listFeatureName[index],index);
+                        }),
+                  );
+                });
+          },
+          label: Text("Explore Features")),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-
-
     );
-
   }
 }

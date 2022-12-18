@@ -5,13 +5,13 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 class RandomQuoteProvider with ChangeNotifier{
-  final GetRandomQuote getRandomQuote;
+  final GetRandomQuote _getRandomQuote;
   QuoteEntity? quote;
-  RandomQuoteProvider({required this.getRandomQuote});
+  RandomQuoteProvider( this._getRandomQuote);
 
 
   Future<void> getQuote()async{
-     var quoteEntity=await getRandomQuote.call();
+     var quoteEntity=await _getRandomQuote.call();
      quote = quoteEntity.foldRight(null, (r, previous) => r);
     //quote=Right(quoteEntity);
 
